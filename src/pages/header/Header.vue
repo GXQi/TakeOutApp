@@ -19,26 +19,44 @@
           <span class="text">{{ seller.supports[0].description }}</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="minus-count">
+      <div v-if="seller.supports" class="minus-count"  @click="handleBulletinClick">
         <span class="count">{{ seller.supports.length }}个</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper">
+    <div class="bulletin-wrapper" @click="handleBulletinClick">
       <span class="bulletin-title"></span><span class="bulletin-text">{{ seller.bulletin }}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
     <div class="header-background">
       <img :src="seller.avatar" width="100%" height="100%" />
     </div>
+    <header-curtain v-show="showCurtain" :seller="seller" @close="handleCurtainClose"></header-curtain>
   </div>
 </template>
 
 <script>
+import HeaderCurtain from './curtain/Curtain'
 export default {
   name: 'Header',
+  data () {
+    return {
+      showCurtain: false
+    }
+  },
   props: {
     seller: Object
+  },
+  components: {
+    HeaderCurtain
+  },
+  methods: {
+    handleBulletinClick () {
+      this.showCurtain = true
+    },
+    handleCurtainClose () {
+      this.showCurtain = false
+    }
   },
   computed: {
     minusIcon () {
@@ -57,6 +75,7 @@ export default {
 @import '~@/common/stylus/base.styl'
   .header
     position: relative
+    overflow: hidden
     color: #FFF
     background: rgba(7, 17, 27, .5)
     .header-wrapper
