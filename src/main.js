@@ -7,6 +7,7 @@ import fastClick from 'fastclick'
 import VueResource from 'vue-resource'
 import 'styles/reset.css'
 import 'styles/border.css'
+import './common/stylus/icon.styl'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
