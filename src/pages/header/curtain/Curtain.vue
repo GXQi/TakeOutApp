@@ -2,30 +2,31 @@
   <div class="curtain">
     <div class="curtain-wrapper clearfix">
       <div class="curtain-content">
-        <div class="curtain-header">
-          <div class="curtain-title">{{ seller.name }}</div>
-          <div class="curtain-star"></div>
+        <div class="curtain-title">{{ seller.name }}</div>
+        <div class="curtain-star">
+          <curtain-star :size="48" :score="seller.score"></curtain-star>
         </div>
         <div class="curtain-discount" v-if="seller.supports">
-          <div class="curtain-discountTitle">优惠信息</div>
+          <div class="info-title">
+            <div class="title-line border-bottom"></div>
+            <div class="curtain-discountTitle">优惠信息</div>
+            <div class="title-line border-bottom"></div>
+          </div>
           <div class="curtain-discountInfo">
             <ul>
               <li v-for="(item, index) in seller.supports" :key="index">
-                <span class="minus"></span>
+                <span class="minus" :class="classMap[item.type]"></span>
                 <span class="text">{{ item.description }}</span>
               </li>
             </ul>
           </div>
         </div>
         <div class="curtain-notice" v-if="seller.bulletin">
-          <div class="curtain-noticeTitle">商家公告</div>
-          <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
-          <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
-          <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
-          <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
-          <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
-          <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
-          <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
+          <div class="info-title">
+            <div class="title-line border-bottom"></div>
+            <div class="curtain-noticeTitle">优惠信息</div>
+            <div class="title-line border-bottom"></div>
+          </div>
           <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
         </div>
       </div>
@@ -37,8 +38,12 @@
 </template>
 
 <script>
+import CurtainStar from '@/common/star/Star'
 export default {
   name: 'Curtain',
+  components: {
+    CurtainStar
+  },
   props: {
     seller: Object
   },
@@ -55,6 +60,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
 @import '~@/common/stylus/base.styl'
+  .border-bottom
+    border-color: rgba(255, 255, 255, .2)
   .curtain
     overflow: auto
     position: fixed
@@ -65,12 +72,39 @@ export default {
     height: 100%
     background: rgba(7, 17, 27, .8)
     .curtain-wrapper
+      width: 100%
       min-height: 100%
       .curtain-content
         margin-top: 1.28rem
         margin-left: .72rem
         margin-right: .72rem
         padding-bottom: 1.28rem
+        .curtain-title
+          text-align: center
+          line-height: .32rem
+          font-size: .32rem
+          font-weight: 700
+        .curtain-star
+          margin-top: .32rem
+          text-align: center
+        .info-title
+          display: flex
+          width: 100%
+          margin: .56rem auto .48rem auto
+          .title-line
+            flex: 1
+            position: relative
+            top: -.12rem
+          .curtain-discountTitle
+            padding: 0 .24rem
+            font-size: .28rem
+            font-weight: 700
+            line-height: .28rem
+          .curtain-noticeTitle
+            padding: 0 .24rem
+            font-size: .28rem
+            font-weight: 700
+            line-height: .28rem
     .curtain-close
       position: relative
       width: .64rem
