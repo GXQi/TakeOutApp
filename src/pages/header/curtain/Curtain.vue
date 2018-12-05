@@ -15,7 +15,7 @@
           <div class="curtain-discountInfo">
             <ul>
               <li v-for="(item, index) in seller.supports" :key="index">
-                <span class="minus" :class="classMap[item.type]"></span>
+                <span class="minus"></span>
                 <span class="text">{{ item.description }}</span>
               </li>
             </ul>
