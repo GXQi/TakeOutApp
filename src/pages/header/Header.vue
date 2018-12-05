@@ -44,7 +44,8 @@ export default {
   name: 'Header',
   data () {
     return {
-      showCurtain: false
+      showCurtain: false,
+      classes: []
     }
   },
   props: {
@@ -69,6 +70,8 @@ export default {
   },
   created () {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+  },
+  mounted () {
   }
 }
 </script>

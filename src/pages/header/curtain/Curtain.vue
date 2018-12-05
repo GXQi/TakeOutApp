@@ -49,10 +49,6 @@ export default {
     handleCurtainClick () {
       this.$emit('close')
     }
-  },
-  created () {
-    console.log(this.seller)
-    this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
   }
 }
 </script>
@@ -142,7 +138,7 @@ export default {
     .curtain-close
       position: relative
       width: .64rem
-      height: .64rem
+      height: 1.28rem
       margin: -1.28rem auto 0 auto
       margin-top: -1.28rem
       font-size: .64rem
