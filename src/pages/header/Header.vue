@@ -31,12 +31,15 @@
     <div class="header-background">
       <img :src="seller.avatar" width="100%" height="100%" />
     </div>
-    <header-curtain v-show="showCurtain" :seller="seller" @close="handleCurtainClose"></header-curtain>
+    <fade-animation>
+      <header-curtain v-show="showCurtain" :seller="seller" @close="handleCurtainClose"></header-curtain>
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import HeaderCurtain from './curtain/Curtain'
+import FadeAnimation from '@/common/fade/FadeAnimation'
 export default {
   name: 'Header',
   data () {
@@ -48,7 +51,8 @@ export default {
     seller: Object
   },
   components: {
-    HeaderCurtain
+    HeaderCurtain,
+    FadeAnimation
   },
   methods: {
     handleBulletinClick () {
