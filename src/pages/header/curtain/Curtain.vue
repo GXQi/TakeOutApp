@@ -133,7 +133,6 @@ export default {
                 line-height: .32rem
                 font-size: .24rem
         .curtain-notice
-          margin: 0 .24rem
           font-size: .24rem
           font-weight: $fontWeight
           line-height: .48rem
