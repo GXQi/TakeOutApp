@@ -22,7 +22,7 @@
         <div class="curtain-notice">
           <div class="info-title">
             <div class="title-line border-bottom"></div>
-            <div class="curtain-noticeTitle">商家公告</div>
+            <div class="curtain-titleMain">商家公告</div>
             <div class="title-line border-bottom"></div>
           </div>
           <div class="curtain-noticeInfo">{{ seller.bulletin }}</div>
