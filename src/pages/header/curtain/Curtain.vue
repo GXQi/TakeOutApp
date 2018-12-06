@@ -9,12 +9,12 @@
         <div class="curtain-discount">
           <div class="info-title">
             <div class="title-line border-bottom"></div>
-            <div class="curtain-discountTitle">优惠信息</div>
+            <div class="curtain-titleMain">优惠信息</div>
             <div class="title-line border-bottom"></div>
           </div>
           <ul class="curtain-discountInfo" v-if="seller.supports">
             <li class="discount-item" v-for="(item, index) in seller.supports" :key="index">
-              <span class="minus"></span>
+              <span class="minus" :class="minusClass[item.type]"></span>
               <span class="text">{{ item.description }}</span>
             </li>
           </ul>
@@ -42,6 +42,11 @@ export default {
   components: {
     CurtainStar
   },
+  data () {
+    return {
+      minusClass: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+    }
+  },
   props: {
     seller: Object
   },
@@ -59,6 +64,19 @@ export default {
 @import '~@/common/stylus/mixin.styl'
   .border-bottom
     border-color: rgba(255, 255, 255, .2)
+  .info-title
+    display: flex
+    width: 100%
+    margin: .56rem auto .48rem auto
+    .title-line
+      flex: 1
+      position: relative
+      top: -.12rem
+    .curtain-titleMain
+      padding: 0 .24rem
+      font-size: .28rem
+      font-weight: 700
+      line-height: .28rem
   .curtain
     overflow: auto
     position: fixed
@@ -84,57 +102,46 @@ export default {
         .curtain-star
           margin-top: .32rem
           text-align: center
-        .info-title
-          display: flex
-          width: 100%
-          margin: .56rem auto .48rem auto
-          .title-line
-            flex: 1
-            position: relative
-            top: -.12rem
-          .curtain-discountTitle
-            padding: 0 .24rem
-            font-size: .28rem
-            font-weight: 700
-            line-height: .28rem
-          .curtain-noticeTitle
-            padding: 0 .24rem
-            font-size: .28rem
-            font-weight: 700
-            line-height: .28rem
-        .curtain-discountInfo
-          margin: 0 .24rem
-          .discount-item
-            margin-bottom: .24rem
-            font-size: 0
-            &:last-child
-              margin-bottom: 0
-            .minus
-              display: inline-block
-              width: .32rem
-              height: .32rem
-              vertical-align: top
-              margin-right: .12rem
-              background-size: .32rem .32rem
-              background-repeat: no-repeat
-              &.decrease
-                bgImg('decrease_2')
-              &.discount
-                bgImg('discount_2')
-              &.guarantee
-                bgImg('guarantee_2')
-              &.invoice
-                bgImg('invoice_2')
-              &.special
-                bgImg('special_2')
-            .text
-              line-height: .32rem
-              font-size: .24rem
-        .curtain-noticeInfo
+        .curtain-discount
+          .curtain-discountInfo
+            margin: 0 .24rem
+            .discount-item
+              margin-bottom: .24rem
+              font-size: 0
+              &:last-child
+                margin-bottom: 0
+              .minus
+                display: inline-block
+                width: .32rem
+                height: .32rem
+                vertical-align: top
+                margin-right: .12rem
+                background-size: .32rem .32rem
+                background-repeat: no-repeat
+                font-size: .2rem
+                &.decrease
+                  bgImg('decrease_2')
+                &.discount
+                  bgImg('discount_2')
+                &.guarantee
+                  bgImg('guarantee_2')
+                &.invoice
+                  bgImg('invoice_2')
+                &.special
+                  bgImg('special_2')
+              .text
+                line-height: .32rem
+                font-size: .24rem
+        .curtain-notice
           margin: 0 .24rem
           font-size: .24rem
           font-weight: $fontWeight
           line-height: .48rem
+          .curtain-noticeInfo
+            margin: 0 .24rem
+            font-size: .24rem
+            font-weight: $fontWeight
+            line-height: .48rem
     .curtain-close
       position: relative
       width: .64rem

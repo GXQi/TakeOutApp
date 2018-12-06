@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-wrapper">
       <div class="header-avatar">
-        <img class="header-img" :src="seller.avatar">
+        <img class="header-img" src="./avatar.png">
       </div>
       <div class="header-content">
         <div class="header-title">
@@ -29,7 +29,7 @@
       <i class="icon-keyboard_arrow_right"></i>
     </div>
     <div class="header-background">
-      <img :src="seller.avatar" width="100%" height="100%" />
+      <img src="./avatar.png" width="100%" height="100%" />
     </div>
     <fade-animation>
       <header-curtain v-show="showCurtain" :seller="seller" @close="handleCurtainClose"></header-curtain>
@@ -70,8 +70,6 @@ export default {
   },
   created () {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-  },
-  mounted () {
   }
 }
 </script>
