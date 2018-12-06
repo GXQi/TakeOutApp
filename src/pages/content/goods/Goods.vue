@@ -1,7 +1,7 @@
 <template>
   <div class="goods">
     <goods-menu :goods="goods"></goods-menu>
-    <goods-foods></goods-foods>
+    <goods-foods :goods="goods"></goods-foods>
   </div>
 </template>
 
@@ -41,5 +41,8 @@ export default {
 <style scoped lang="stylus">
   .goods
     display: flex
+    position: absolute
+    top: 3.48rem
+    bottom: .92rem
     overflow: hidden
 </style>

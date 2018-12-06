@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="menu" ref="wrapper">
     <ul class="menu-ul">
       <li v-for="(item, index) of goods" :key="index" class="menu-item border-bottom">
         <span class="text">
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import BetterScroll from 'better-scroll'
 export default {
   name: 'GoodsMenu',
   props: {
@@ -23,6 +24,11 @@ export default {
     return {
       minusClass: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
+  },
+  mounted () {
+    this.scroll = new BetterScroll(this.$refs.wrapper, {
+      click: true
+    })
   }
 }
 </script>
