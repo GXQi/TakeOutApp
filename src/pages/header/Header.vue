@@ -49,7 +49,9 @@ export default {
     }
   },
   props: {
-    seller: Object
+    seller: {
+      Object
+    }
   },
   components: {
     HeaderCurtain,

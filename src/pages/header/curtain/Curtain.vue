@@ -63,7 +63,8 @@ export default {
 @import '~@/common/stylus/base.styl'
 @import '~@/common/stylus/mixin.styl'
   .border-bottom
-    border-color: rgba(255, 255, 255, .2)
+    &:before
+      border-color: rgba(255, 255, 255, .2)
   .info-title
     display: flex
     width: 100%

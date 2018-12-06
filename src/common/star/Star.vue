@@ -35,9 +35,6 @@ export default {
       }
       return result
     }
-  },
-  created () {
-    console.log(this.score)
   }
 }
 </script>

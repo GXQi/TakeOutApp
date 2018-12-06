@@ -3,7 +3,7 @@
     <home-header :seller="seller"></home-header>
     <home-tab></home-tab>
     <home-content>
-      <router-view/>
+      <router-view :seller="seller"/>
     </home-content>
   </div>
 </template>
