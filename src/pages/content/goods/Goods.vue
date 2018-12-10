@@ -1,7 +1,19 @@
 <template>
   <div class="goods">
-    <goods-menu :goods="goods"></goods-menu>
-    <goods-foods :goods="goods"></goods-foods>
+    <goods-menu
+      :goods="goods"
+      :scrollY="scrollY"
+      :listheight="listheight"
+      @menuindex="getMenuIndex"
+    >
+    </goods-menu>
+    <goods-foods
+      :goods="goods"
+      @indexchange="handleFoodsChange"
+      @listheight="listHeightPara"
+      :menuindex="menuindex"
+    >
+    </goods-foods>
   </div>
 </template>
 
@@ -21,7 +33,21 @@ export default {
   },
   data () {
     return {
-      goods: []
+      goods: [],
+      scrollY: 0,
+      listheight: [],
+      menuindex: 0
+    }
+  },
+  methods: {
+    handleFoodsChange (y) {
+      this.scrollY = y
+    },
+    listHeightPara (list) {
+      this.listheight = list
+    },
+    getMenuIndex (index) {
+      this.menuindex = index
     }
   },
   created () {

@@ -1,8 +1,12 @@
 <template>
   <div class="menu" ref="wrapper">
     <ul class="menu-ul">
-      <li v-for="(item, index) of goods" :key="index" class="menu-item border-bottom">
-        <span class="text">
+      <li v-for="(item, index) of goods"
+        :key="index" class="menu-item"
+        :class="{'current':currentIndex===index}"
+        @click="selectMenu(index, $event)"
+      >
+        <span class="text border-bottom">
           <span v-show="item.type > 0" class="minus" :class="minusClass[item.type]"></span>{{ item.name }}
         </span>
       </li>
@@ -18,11 +22,34 @@ export default {
     goods: {
       Object,
       required: true
+    },
+    scrollY: {
+      Number
+    },
+    listheight: {
+      Array
     }
   },
   data () {
     return {
       minusClass: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+    }
+  },
+  methods: {
+    selectMenu (index, event) {
+      this.$emit('menuindex', index)
+    }
+  },
+  computed: {
+    currentIndex () {
+      for (let i = 0; i < this.listheight.length; i++) {
+        let height1 = this.listheight[i]
+        let height2 = this.listheight[i + 1]
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          return i
+        }
+      }
+      return 0
     }
   },
   mounted () {
@@ -45,12 +72,14 @@ export default {
     width: 1.6rem
     background: #F3F5F7
     .menu-ul
-      padding: 0 .24rem
       .menu-item
         display: table
         height: 1.08rem
         width: 1.12rem
+        padding: 0 .24rem
         line-height: .28rem
+        &.current
+          background: #FFF
         .text
           display: table-cell
           width: 1.12rem

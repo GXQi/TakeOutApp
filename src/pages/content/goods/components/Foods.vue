@@ -1,7 +1,7 @@
 <template>
   <div class="foods" ref="wrapper">
     <ul>
-      <li v-for="(titleItem, index) of goods" :key="index" class="food-item">
+      <li v-for="(titleItem, index) of goods" :key="index" class="food-item food-item-hook">
         <h1 class="food-title">{{ titleItem.name }}</h1>
         <ul class="food-ul">
           <li v-for="(foodItem, index) of titleItem.foods" :key="index" class="foodList-item border-bottom">
@@ -31,16 +31,54 @@
 import BetterScroll from 'better-scroll'
 export default {
   name: 'GoodsFoods',
+  data () {
+    return {
+      listHeight: [],
+      scrollY: 0,
+      currentIndex: 0
+    }
+  },
   props: {
     goods: {
       Object,
       required: true
+    },
+    menuindex: {
+      Number
+    }
+  },
+  methods: {
+    calculateHeight () {
+      let foodList = this.$refs.wrapper.getElementsByClassName('food-item-hook')
+      let height = 0
+      this.listHeight.push(height)
+      for (let i = 0; i < foodList.length; i++) {
+        let item = foodList[i]
+        height += item.clientHeight
+        this.listHeight.push(height)
+      }
+      this.$emit('listheight', [0, 1033, 1185, 1306, 1617, 1833, 2068, 2379, 2880, 3571])
+    }
+  },
+  watch: {
+    menuindex () {
+      let foodList = this.$refs.wrapper.getElementsByClassName('food-item-hook')
+      let el = foodList[this.menuindex]
+      this.scroll.scrollToElement(el, 500)
+    },
+    scrollY () {
+      this.$emit('indexchange', this.scrollY)
     }
   },
   mounted () {
     this.scroll = new BetterScroll(this.$refs.wrapper, {
-      click: true
+      click: true,
+      probeType: 3
     })
+    this.scroll.on('scroll', (pos) => {
+      this.scrollY = Math.abs(Math.round(pos.y))
+    })
+    this.calculateHeight()
   }
 }
 </script>
@@ -106,4 +144,5 @@ export default {
               &:nth-child(3)
                 text-decoration: line-through
                 font-size: .2rem
+                color: rgb(147, 153, 159)
 </style>
