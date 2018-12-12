@@ -14,21 +14,24 @@
       :menuindex="menuindex"
     >
     </goods-foods>
+    <shopping-cart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopping-cart>
   </div>
 </template>
 
 <script>
 import GoodsMenu from './components/Menu'
 import GoodsFoods from './components/Foods'
+import ShoppingCart from '@/pages/content/shoppingcart/ShoppingCart'
 export default {
   name: 'Goods',
   components: {
     GoodsMenu,
-    GoodsFoods
+    GoodsFoods,
+    ShoppingCart
   },
   props: {
     seller: {
-      Object
+      type: Object
     }
   },
   data () {
