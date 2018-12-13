@@ -11,10 +11,16 @@
       :goods="goods"
       @indexchange="handleFoodsChange"
       @listheight="listHeightPara"
+      @foodsarray="getFoodsArray"
       :menuindex="menuindex"
     >
     </goods-foods>
-    <shopping-cart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopping-cart>
+    <shopping-cart
+      :delivery-price="seller.deliveryPrice"
+      :min-price="seller.minPrice"
+      :select-foods="selectFoods"
+    >
+    </shopping-cart>
   </div>
 </template>
 
@@ -39,7 +45,8 @@ export default {
       goods: [],
       scrollY: 0,
       listheight: [],
-      menuindex: 0
+      menuindex: 0,
+      selectFoods: []
     }
   },
   methods: {
@@ -51,6 +58,9 @@ export default {
     },
     getMenuIndex (index) {
       this.menuindex = index
+    },
+    getFoodsArray (arr) {
+      this.selectFoods = arr
     }
   },
   created () {

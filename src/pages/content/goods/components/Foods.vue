@@ -19,6 +19,9 @@
                 <span>{{ foodItem.price }}</span>
                 <span v-if="foodItem.oldPrice">￥{{ foodItem.oldPrice }}</span>
               </div>
+              <div class="cartcontrol-wrapper">
+                <cart-control :food="foodItem"></cart-control>
+              </div>
             </div>
           </li>
         </ul>
@@ -29,6 +32,7 @@
 
 <script>
 import BetterScroll from 'better-scroll'
+import CartControl from '@/common/cartcontrol/Cartcontrol'
 export default {
   name: 'GoodsFoods',
   data () {
@@ -47,6 +51,9 @@ export default {
       Number
     }
   },
+  components: {
+    CartControl
+  },
   methods: {
     calculateHeight () {
       let foodList = this.$refs.wrapper.getElementsByClassName('food-item-hook')
@@ -58,6 +65,20 @@ export default {
         this.listHeight.push(height)
       }
       this.$emit('listheight', [0, 1033, 1185, 1306, 1617, 1833, 2068, 2379, 2880, 3571])
+    }
+  },
+  computed: {
+    selectFoods () {
+      let foods = []
+      this.goods.forEach((good) => {
+        console.log(good)
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   watch: {
@@ -145,4 +166,9 @@ export default {
                 text-decoration: line-through
                 font-size: .2rem
                 color: rgb(147, 153, 159)
+          .cartcontrol-wrapper
+            position: absolute
+            right: 0
+            bottom: .24rem
+            font-size: 0
 </style>

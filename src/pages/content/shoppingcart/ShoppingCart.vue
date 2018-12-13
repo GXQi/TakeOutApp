@@ -4,7 +4,7 @@
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight':totalCount>0}">
-            <i class="icon-shopping_cart highlight" :class="{'highlight':totalCount>0}"></i>
+            <i class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></i>
           </div>
           <div class="num" v-show="totalCount>0">{{ totalCount }}</div>
         </div>
@@ -164,7 +164,6 @@ export default {
         flex: 0 0 2.1rem
         width: 2.1rem
         text-align: center
-        background: rgba(255, 255, 255, .1)
         .pay
           height: .96rem
           padding-top: .24rem
@@ -173,7 +172,7 @@ export default {
           font-weight: 700
           color: rgba(255, 255, 255, .4)
           &.not-enough
-            background: rgba(255, 255, 255, .4)
+            background: rgba(255, 255, 255, .1)
           &.enough
             background: rgb(0, 180, 60)
             color: rgb(255, 255, 255)
