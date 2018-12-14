@@ -4,7 +4,12 @@
       <li v-for="(titleItem, index) of goods" :key="index" class="food-item food-item-hook">
         <h1 class="food-title">{{ titleItem.name }}</h1>
         <ul class="food-ul">
-          <li v-for="(foodItem, index) of titleItem.foods" :key="index" class="foodList-item border-bottom">
+          <li
+            v-for="(foodItem, index) of titleItem.foods"
+            :key="index"
+            class="foodList-item border-bottom"
+            @click="selectFood(foodItem)"
+          >
             <div class="food-img">
               <img width="57" height="57" :src="foodItem.icon" />
             </div>
@@ -27,19 +32,25 @@
         </ul>
       </li>
     </ul>
+    <food-detail
+      :food="selectedFood"
+      ref="food"
+    ></food-detail>
   </div>
 </template>
 
 <script>
 import BetterScroll from 'better-scroll'
 import CartControl from '@/common/cartcontrol/Cartcontrol'
+import FoodDetail from 'content/detail/Detail'
 export default {
   name: 'GoodsFoods',
   data () {
     return {
       listHeight: [],
       scrollY: 0,
-      currentIndex: 0
+      currentIndex: 0,
+      selectedFood: {}
     }
   },
   props: {
@@ -51,7 +62,8 @@ export default {
     }
   },
   components: {
-    CartControl
+    CartControl,
+    FoodDetail
   },
   methods: {
     calculateHeight () {
@@ -64,6 +76,10 @@ export default {
         this.listHeight.push(height)
       }
       this.$emit('listheight', [0, 1033, 1185, 1306, 1617, 1833, 2068, 2379, 2880, 3571])
+    },
+    selectFood (food) {
+      this.selectedFood = food
+      this.$refs.food.show()
     }
   },
   computed: {

@@ -27,7 +27,7 @@
 <script>
 import GoodsMenu from './components/Menu'
 import GoodsFoods from './components/Foods'
-import ShoppingCart from '@/pages/content/shoppingcart/ShoppingCart'
+import ShoppingCart from 'content/shoppingcart/ShoppingCart'
 export default {
   name: 'Goods',
   components: {
