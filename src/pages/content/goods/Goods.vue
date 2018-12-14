@@ -13,12 +13,12 @@
       @listheight="listHeightPara"
       @foodsarray="getFoodsArray"
       :menuindex="menuindex"
+      :select-foods="selectFoods"
     >
     </goods-foods>
     <shopping-cart
       :delivery-price="seller.deliveryPrice"
       :min-price="seller.minPrice"
-      :select-foods="selectFoods"
     >
     </shopping-cart>
   </div>
@@ -61,6 +61,7 @@ export default {
     },
     getFoodsArray (arr) {
       this.selectFoods = arr
+      console.log(this.selectFoods)
     }
   },
   created () {

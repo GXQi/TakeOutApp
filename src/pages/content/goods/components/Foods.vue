@@ -44,8 +44,7 @@ export default {
   },
   props: {
     goods: {
-      Object,
-      required: true
+      Object
     },
     menuindex: {
       Number
@@ -78,6 +77,7 @@ export default {
           }
         })
       })
+      this.$emit('foodsarray', foods)
       return foods
     }
   },
@@ -89,6 +89,18 @@ export default {
     },
     scrollY () {
       this.$emit('indexchange', this.scrollY)
+    },
+    goods () {
+      let foods = []
+      this.goods.forEach((good) => {
+        console.log(good)
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      this.$emit('select-foods', this.goods)
     }
   },
   mounted () {
