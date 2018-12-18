@@ -28,7 +28,7 @@
         <p class="desc-info">{{ food.info }}</p>
       </div>
       <div class="rating-content">
-        <h2 class="desc-name">商品介绍</h2>
+        <h2 class="rating-name">商品评价</h2>
       </div>
     </div>
   </div>
@@ -59,7 +59,8 @@ export default {
       this.$nextTick(() => {
         if (!this.scroll) {
           this.scroll = new BetterScroll(this.$refs.detail, {
-            click: true
+            click: true,
+            bounce: false
           })
           console.log(this.scroll)
         } else {
@@ -89,7 +90,6 @@ export default {
     bottom: .96rem
     z-index: 30
     width: 100%
-    height: 1000px
     .detail-content
       background: #F3F5F7
       overflow: hidden
@@ -173,4 +173,11 @@ export default {
           padding: 0 .16rem
           font-weight: 200
           color: rgb(77, 85, 93)
+      .rating-content
+        padding: .36rem
+        margin-top: .32rem
+        background: #FFF
+        .rating-name
+          font-size: .28rem
+          padding-bottom: .12rem
 </style>
